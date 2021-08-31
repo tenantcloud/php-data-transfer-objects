@@ -1,5 +1,5 @@
 {
-	"name": "tenantcloud/composer-package",
+	"name": "tenantcloud/php-data-transfer-objects",
 	"description": "PHP data transfer objects",
 	"minimum-stability": "stable",
 	"license": "MIT",
