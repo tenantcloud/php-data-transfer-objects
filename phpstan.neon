@@ -9,15 +9,4 @@ parameters:
 		- src
 
 	ignoreErrors:
-		-
-			message: '#Call to an undefined .+#i'
-			path: '*Mixin.php'
-		-
-			message: '#Call to protected method .+#i'
-			path: '*Mixin.php'
-		-
-			message: '#Access to protected property .+Mixin::.+#i'
-			path: '*Mixin.php'
-		-
-			message: '#Method .+Mixin::.+ invoked with \d parameters, 0 required.#i'
-			path: '*Mixin.php'
+		-'#Unsafe usage of new static\(\)\.#i'
