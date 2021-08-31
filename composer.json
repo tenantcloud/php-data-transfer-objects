@@ -3,13 +3,21 @@
 	"description": "PHP data transfer objects",
 	"minimum-stability": "stable",
 	"license": "MIT",
+	"authors": [
+		{
+			"name": "Team Tenantcloud",
+			"email": "info@tenantcloud.com"
+		}
+	],
 	"require": {
-		"php": ">=7.4",
+		"php": ">=7.4 || ^8.0",
 		"ext-json": "*",
-		"illuminate/support": "^8.58"
+		"illuminate/support": "^8.0",
+		"spatie/macroable": "1.0.1"
 	},
 	"require-dev": {
-		"pestphp/pest": "^1.0",
+		"phpunit/phpunit": "^9.0",
+		"orchestra/testbench": "^6.0",
 		"friendsofphp/php-cs-fixer": "~2.18.2",
 		"tenantcloud/php-cs-fixer-rule-sets": "~1.1.0"
 	},
@@ -24,7 +32,7 @@
 		}
 	},
 	"scripts": {
-		"test": "./vendor/bin/pest",
+		"test": "vendor/bin/phpunit",
 		"cs-fix": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --show-progress=estimating",
 		"phpstan":  "./tools/phpstan/vendor/bin/phpstan analyse"
 	}

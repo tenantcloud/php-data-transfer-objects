@@ -1,7 +1,14 @@
 <?php
 
-use TenantCloud\Example;
+namespace Tests;
 
-test('something works', function () {
-	expect(new Example())->not()->toBeNull();
-});
+use Orchestra\Testbench\TestCase;
+use TenantCloud\DataTransferObjects\ExampleDTO;
+
+class ExampleTest extends TestCase
+{
+	public function testExample()
+	{
+		self::assertNotNull(ExampleDTO::create());
+	}
+}
