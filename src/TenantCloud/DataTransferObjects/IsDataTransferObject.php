@@ -45,7 +45,7 @@ trait IsDataTransferObject
 	/**
 	 * @return static
 	 */
-	public static function create(): self
+	public static function create()
 	{
 		return new static();
 	}
@@ -58,7 +58,7 @@ trait IsDataTransferObject
 	 *
 	 * @return static
 	 */
-	public static function from($data, array $map = []): self
+	public static function from($data, array $map = [])
 	{
 		if ($data instanceof static) {
 			return clone $data;
@@ -79,7 +79,7 @@ trait IsDataTransferObject
 	 *
 	 * @return static
 	 */
-	public function fill(array $data): self
+	public function fill(array $data)
 	{
 		foreach ($data as $key => $value) {
 			if (!$this->doesFieldExist($key)) {
@@ -117,7 +117,7 @@ trait IsDataTransferObject
 	/**
 	 * {@inheritdoc}
 	 */
-	public function jsonSerialize(): array
+	public function jsonSerialize()
 	{
 		return $this->all();
 	}
@@ -127,7 +127,10 @@ trait IsDataTransferObject
 		return !$this->isEmpty();
 	}
 
-	public function isEmpty(): bool
+	/**
+	 * @return bool
+	 */
+	public function isEmpty()
 	{
 		return empty($this->data);
 	}
