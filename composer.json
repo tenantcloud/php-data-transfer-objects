@@ -1,0 +1,27 @@
+{
+	"name": "tenantcloud/composer-package",
+	"description": "A template for composer packages",
+	"minimum-stability": "stable",
+	"license": "MIT",
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"pestphp/pest": "^1.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"scripts": {
+		"test": "./vendor/bin/pest",
+		"cs-fix": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --show-progress=estimating",
+		"phpstan":  "./tools/phpstan/vendor/bin/phpstan analyse"
+	}
+}

@@ -1,0 +1,14 @@
+includes:
+	- tools/phpstan/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+	level: 8
+	tmpDir: ./tmp/phpstan
+
+	paths:
+		- src
+		- tests
+
+	ignoreErrors:
+		# There's no extension for that :(
+		- '#Call to an undefined method Pest\\Expectations\\Expectation|Pest\\Expectations\\Support\\Extendable::#i'
