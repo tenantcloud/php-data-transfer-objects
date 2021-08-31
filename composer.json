@@ -1,13 +1,17 @@
 {
 	"name": "tenantcloud/composer-package",
-	"description": "A template for composer packages",
+	"description": "PHP data transfer objects",
 	"minimum-stability": "stable",
 	"license": "MIT",
 	"require": {
-		"php": ">=7.4"
+		"php": ">=7.4",
+		"ext-json": "*",
+		"illuminate/support": "^8.58"
 	},
 	"require-dev": {
-		"pestphp/pest": "^1.0"
+		"pestphp/pest": "^1.0",
+		"friendsofphp/php-cs-fixer": "~2.18.2",
+		"tenantcloud/php-cs-fixer-rule-sets": "~1.1.0"
 	},
 	"autoload": {
 		"psr-0": {
