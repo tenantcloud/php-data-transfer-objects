@@ -2,13 +2,22 @@ includes:
 	- tools/phpstan/vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
-	level: 8
+	level: 1
 	tmpDir: ./tmp/phpstan
 
 	paths:
 		- src
-		- tests
 
 	ignoreErrors:
-		# There's no extension for that :(
-		- '#Call to an undefined method Pest\\Expectations\\Expectation|Pest\\Expectations\\Support\\Extendable::#i'
+		-
+			message: '#Call to an undefined .+#i'
+			path: '*Mixin.php'
+		-
+			message: '#Call to protected method .+#i'
+			path: '*Mixin.php'
+		-
+			message: '#Access to protected property .+Mixin::.+#i'
+			path: '*Mixin.php'
+		-
+			message: '#Method .+Mixin::.+ invoked with \d parameters, 0 required.#i'
+			path: '*Mixin.php'
