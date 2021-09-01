@@ -7,7 +7,7 @@ use TenantCloud\DataTransferObjects\ExampleDTO;
 
 class ExampleTest extends TestCase
 {
-	public function testExample()
+	public function testExample(): void
 	{
 		self::assertNotNull(ExampleDTO::create());
 	}
