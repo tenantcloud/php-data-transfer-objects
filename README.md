@@ -2,6 +2,11 @@
 
 Laravel data transfer objects.
 
+## Requirements
+
+* PHP version >=7.4.1
+* Docker (optional)
+
 ## Installation
 
 In your `composer.json`, add this repository:
@@ -14,6 +19,26 @@ In your `composer.json`, add this repository:
 ],
 ```
 Then do `composer require tenantcloud/php-data-transfer-objects` to install the package.
+
+## Examples
+	// Create empty data object.
+	$data = ExampleDTO::create();
+	
+	// Serialize for array or json
+	$data->toArray();
+	$data->toJson();
+
+	// Create from existing data
+	$data = ExampleDTO::from(['foo']);
+	
+	// Check is property filled
+	$data->hasFoo();
+
+	// Get foo property
+	$data->getFoo();
+
+	// Set property
+	$data->setFoo($foo);
 
 ### Commands
 Install dependencies:
