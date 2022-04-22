@@ -5,7 +5,7 @@ namespace Tests;
 use Orchestra\Testbench\TestCase;
 use TenantCloud\DataTransferObjects\ExampleDTO;
 use TenantCloud\Standard\Enum\ValueEnum;
-use Tests\stubs\TestEnum;
+use Tests\Stubs\TestEnum;
 
 class ExampleTest extends TestCase
 {

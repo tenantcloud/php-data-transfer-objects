@@ -3,7 +3,7 @@
 namespace TenantCloud\DataTransferObjects;
 
 use TenantCloud\Standard\Enum\ValueEnum;
-use Tests\stubs\TestEnum;
+use Tests\Stubs\TestEnum;
 
 /**
  * @method bool      hasFoo()
