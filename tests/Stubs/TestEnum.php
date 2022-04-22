@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\stubs;
+namespace Tests\Stubs;
 
 use TenantCloud\Standard\Enum\ValueEnum;
 
