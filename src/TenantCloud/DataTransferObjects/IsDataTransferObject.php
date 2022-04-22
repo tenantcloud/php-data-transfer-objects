@@ -51,8 +51,10 @@ trait IsDataTransferObject
 		$data = $this->all();
 
 		foreach ($this->enums as $key => $item) {
-			if (Arr::get($data, $key) instanceof ValueEnum) {
-				Arr::set($data, $key, $item->value());
+			$enum = Arr::get($data, $key);
+
+			if ($enum instanceof ValueEnum) {
+				Arr::set($data, $key, $enum->value());
 			}
 		}
 
