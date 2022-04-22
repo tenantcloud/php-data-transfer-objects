@@ -50,9 +50,9 @@ trait IsDataTransferObject
 	{
 		$data = $this->all();
 
-		foreach ($data as $key => $item) {
-			if ($item instanceof ValueEnum) {
-				$data[$key] = $item->value();
+		foreach ($this->enums as $key => $item) {
+			if (Arr::get($data, $key) instanceof ValueEnum) {
+				Arr::set($data, $key, $item->value());
 			}
 		}
 
@@ -70,10 +70,10 @@ trait IsDataTransferObject
 
 		$dataItems = $data['data'];
 
-		foreach ($dataItems as $index => $dataItem) {
-			if ($enum = Arr::get($this->enums, $index)) {
+		foreach ($this->enums as $index => $enum) {
+			if (Arr::has($dataItems, $index)) {
 				/* @var ValueEnum|null $enum */
-				$dataItems[$index] = $enum::fromValue($dataItem);
+				Arr::set($dataItems, $index, $enum::fromValue(Arr::get($dataItems, $index)));
 			}
 		}
 
