@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
+use TenantCloud\Standard\Enum\ValueEnum;
 use Webmozart\Assert\Assert;
 
 /**
@@ -16,6 +17,9 @@ trait IsDataTransferObject
 	use ForwardsCalls;
 
 	protected array $fields = [];
+
+	/** @var array<string, class-string<ValueEnum>> */
+	protected array $enums = [];
 
 	private array $data = [];
 
@@ -40,6 +44,40 @@ trait IsDataTransferObject
 		}
 
 		static::throwBadMethodCallException($method);
+	}
+
+	public function __serialize(): array
+	{
+		$data = $this->all();
+
+		foreach ($data as $key => $item) {
+			if ($item instanceof ValueEnum) {
+				$data[$key] = $item->value();
+			}
+		}
+
+		return [
+			'fields' => $this->fields,
+			'enums'  => $this->enums,
+			'data'   => $data,
+		];
+	}
+
+	public function __unserialize(array $data): void
+	{
+		$this->fields = $data['fields'];
+		$this->enums = $data['enums'];
+
+		$dataItems = $data['data'];
+
+		foreach ($dataItems as $index => $dataItem) {
+			if ($enum = Arr::get($this->enums, $index)) {
+				/* @var ValueEnum|null $enum */
+				$dataItems[$index] = $enum::fromValue($dataItem);
+			}
+		}
+
+		$this->data = $dataItems;
 	}
 
 	/**
