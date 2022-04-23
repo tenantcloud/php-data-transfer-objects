@@ -56,6 +56,14 @@ trait IsDataTransferObject
 			if ($enum instanceof ValueEnum) {
 				Arr::set($data, $key, $enum->value());
 			}
+
+			if (is_iterable($enum)) {
+				foreach ($enum as $index => $enumItem) {
+					if ($enumItem instanceof ValueEnum) {
+						Arr::set($data[$key], $index, $enumItem->value());
+					}
+				}
+			}
 		}
 
 		return [
@@ -74,8 +82,16 @@ trait IsDataTransferObject
 
 		foreach ($this->enums as $index => $enum) {
 			if (Arr::has($dataItems, $index)) {
-				/* @var ValueEnum|null $enum */
-				Arr::set($dataItems, $index, $enum::fromValue(Arr::get($dataItems, $index)));
+				$serializedItem = Arr::get($dataItems, $index);
+
+				if (is_iterable($serializedItem)) {
+					foreach ($serializedItem as $key => $item) {
+						Arr::set($dataItems[$index], $key, $enum::fromValue($item));
+					}
+				} else {
+					/* @var ValueEnum|null $enum */
+					Arr::set($dataItems, $index, $enum::fromValue($serializedItem));
+				}
 			}
 		}
 
