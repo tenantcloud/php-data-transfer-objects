@@ -66,6 +66,10 @@ trait IsDataTransferObject
 			}
 		}
 
+		foreach ($data as $index => $dataItem) {
+			$data[$index] = serialize($dataItem);
+		}
+
 		return [
 			'fields' => $this->fields,
 			'enums'  => $this->enums,
@@ -79,6 +83,13 @@ trait IsDataTransferObject
 		$this->enums = $data['enums'];
 
 		$dataItems = $data['data'];
+
+		foreach ($dataItems as $index => $dataItem) {
+			// TODO: find better checker is data is serialized.
+			if (is_string($dataItem)) {
+				$dataItems[$index] = unserialize($dataItem);
+			}
+		}
 
 		foreach ($this->enums as $index => $enum) {
 			if (Arr::has($dataItems, $index)) {
