@@ -85,14 +85,14 @@ class SerializationTest extends TestCase
 	public function testNestedDtoSerialization(): void
 	{
 		$nestedDto = ExampleDTO::from([
-			'enum'       => TestEnum::$ONE->value(),
-			'array_enum' => [TestEnum::$ONE->value()],
+			'enum'       => TestEnum::$ONE,
+			'array_enum' => [TestEnum::$ONE],
 		]);
 
 		$dto = StubDTO::from([
 			'name' => 's:2 Test s:1',
 			'dto'  => $nestedDto,
-			'enum' => TestEnum::$ONE->value(),
+			'enum' => TestEnum::$ONE,
 		]);
 
 		$serialized = serialize($dto);

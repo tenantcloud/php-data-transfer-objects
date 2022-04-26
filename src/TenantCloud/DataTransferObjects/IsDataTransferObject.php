@@ -85,10 +85,7 @@ trait IsDataTransferObject
 		$dataItems = $data['data'];
 
 		foreach ($dataItems as $index => $dataItem) {
-			// TODO: find better checker is data is serialized.
-			if (is_string($dataItem)) {
-				$dataItems[$index] = unserialize($dataItem);
-			}
+			$dataItems[$index] = unserialize($dataItem);
 		}
 
 		foreach ($this->enums as $index => $enum) {
