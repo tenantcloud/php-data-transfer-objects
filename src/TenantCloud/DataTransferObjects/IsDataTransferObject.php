@@ -94,11 +94,11 @@ trait IsDataTransferObject
 
 				if (is_iterable($serializedItem)) {
 					foreach ($serializedItem as $key => $item) {
-						Arr::set($dataItems[$index], $key, $enum::fromValue($item));
+						Arr::set($dataItems[$index], $key, $item === null ? $item : $enum::fromValue($item));
 					}
 				} else {
 					/* @var ValueEnum|null $enum */
-					Arr::set($dataItems, $index, $enum::fromValue($serializedItem));
+					Arr::set($dataItems, $index, $serializedItem === null ? $serializedItem : $enum::fromValue($serializedItem));
 				}
 			}
 		}
