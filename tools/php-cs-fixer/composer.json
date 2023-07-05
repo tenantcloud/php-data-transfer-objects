@@ -1,6 +1,0 @@
-{
-	"require": {
-		"friendsofphp/php-cs-fixer": "^2.18",
-		"tenantcloud/php-cs-fixer-rule-sets": "~1.1.0"
-	}
-}
