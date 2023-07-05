@@ -28,17 +28,11 @@ abstract class DataTransferObject implements Arrayable, JsonSerializable
 {
 	use IsDataTransferObject;
 
-	/**
-	 * {@inheritdoc}
-	 */
 	protected function methodToKey(string $key): string
 	{
 		return Str::snake($key);
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
 	protected function keyToMethod(string $key): string
 	{
 		return Str::studly($key);

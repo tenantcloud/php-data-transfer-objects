@@ -1,23 +1,19 @@
 name: Tests
 
-on:
-    push:
-    pull_request:
+on: [push, pull_request]
 
 jobs:
-    test:
-        name: Tests & PHPStan on PHP ${{ matrix.php }}
-
+    phpunit:
+        name: PHPUnit on PHP v${{ matrix.php }}
         runs-on: ubuntu-latest
-
         strategy:
             fail-fast: true
             matrix:
-                php: [7.4, 8.0, 8.1]
+                php: [ 8.1, 8.2 ]
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -31,7 +27,7 @@ jobs:
 
             -   name: Cache Composer packages
                 id: composer-cache
-                uses: actions/cache@v2
+                uses: actions/cache@v3
                 with:
                     path: vendor
                     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -41,37 +37,27 @@ jobs:
             -   name: Install dependencies
                 run: composer install --prefer-dist --no-progress
 
-            -   name: Execute tests
+            -   name: Execute phpunit
                 run: composer test -- --colors=always
 
-            # Those should usually be a separate job, but as GitHub Actions currently does not support any form of sharing
-            # steps or an image between them, extracting those to a separate job would mean a full blown copy-paste of this one.
-            -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --working-dir=tools/phpstan
-
-            -   name: Run phpstan
-                run: composer phpstan
-
-    code-style:
-        name: Code style
-
+    php-cs-fixer:
+        name: php-cs-fixer
         runs-on: ubuntu-latest
-
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
                 with:
-                    php-version: 8.0
+                    php-version: 8.1
                     extensions: dom, curl, libxml, mbstring, zip
                     tools: composer:v2
                     coverage: none
 
             -   name: Cache Composer packages
                 id: composer-cache
-                uses: actions/cache@v2
+                uses: actions/cache@v3
                 with:
                     path: vendor
                     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -79,7 +65,43 @@ jobs:
                         ${{ runner.os }}-php-
 
             -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --working-dir=tools/php-cs-fixer
+                run: composer install --prefer-dist --no-progress
 
-            -   name: Run php-cs-fixer
-                run: composer cs-fix -- --dry-run --diff --using-cache=no --diff-format udiff
+            -   name: Execute php-cs-fixer
+                run: composer cs-fix -- --dry-run --diff --using-cache=no
+
+    phpstan:
+        name: PHPStan on PHP v${{ matrix.php }}
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ 8.1, 8.2 ]
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    tools: composer:v2
+                    coverage: none
+
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
+
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress
+
+            -   name: Execute phpstan
+                run: composer phpstan

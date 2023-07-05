@@ -13,17 +13,11 @@ abstract class CamelDataTransferObject implements Arrayable
 {
 	use IsDataTransferObject;
 
-	/**
-	 * {@inheritdoc}
-	 */
 	protected function methodToKey(string $key): string
 	{
 		return lcfirst($key);
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
 	protected function keyToMethod(string $key): string
 	{
 		return ucfirst($key);
