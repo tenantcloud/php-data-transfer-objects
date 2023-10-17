@@ -9,16 +9,10 @@ Laravel data transfer objects.
 
 ## Installation
 
-In your `composer.json`, add this repository:
+Require this package with composer.
 ```
-"repositories": [
-    {
-        "type": "git",
-        "url": "https://github.com/tenantcloud/php-data-transfer-objects"
-    }
-],
+composer require tenantcloud/php-data-transfer-objects
 ```
-Then do `composer require tenantcloud/php-data-transfer-objects` to install the package.
 
 ## Examples
 	// Create empty data object.
