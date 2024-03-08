@@ -164,6 +164,11 @@ trait IsMigrationDataTransferObject
 		return $this->propertyToKey(lcfirst($key));
 	}
 
+	protected function keyToMethod(string $key): string
+	{
+		return ucfirst($this->keyToProperty($key));
+	}
+
 	/**
 	 * Forwards ->getFieldName(), ->setFieldName($value) and ->hasFieldName() to reduce boilerplate.
 	 */
