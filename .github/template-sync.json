@@ -1,0 +1,8 @@
+{
+	"repositories": [
+		{
+			"url": "https://github.com/tenantcloud/php-package-skeleton",
+			"branch": "sync"
+		}
+	]
+}
