@@ -16,7 +16,7 @@ jobs:
 
             - name: Sync from template
               id: sync_from_template
-              uses: tenantcloud/template-sync@v1.0.0-alpha.9
+              uses: tenantcloud/template-sync@v1.0.0-alpha.11
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
