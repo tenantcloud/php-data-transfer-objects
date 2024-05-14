@@ -35,7 +35,6 @@ trait IsDataTransferObject
 	 * Create instance of self and fill it with given data.
 	 *
 	 * @param array|DataTransferObject $data
-	 * @param array                    $map  Key-value map, where key is key from $data and value is mapped field from ->fields
 	 *
 	 * @return static
 	 */

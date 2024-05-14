@@ -6,15 +6,15 @@ use TenantCloud\Standard\Enum\ValueEnum;
 use Tests\Stubs\TestEnum;
 
 /**
- * @method bool        hasFoo()
- * @method self        setFoo($foo)
- * @method mixed       getFoo()
- * @method bool        hasEnum()
- * @method self        setEnum(ValueEnum $enum)
- * @method ValueEnum   getEnum()
- * @method bool        hasArrayEnum()
- * @method self        setArrayEnum(array $arrayEnum)
- * @method ValueEnum[] getArrayEnum()
+ * @method bool            hasFoo()
+ * @method self            setFoo($foo)
+ * @method mixed           getFoo()
+ * @method bool            hasEnum()
+ * @method self            setEnum(ValueEnum $enum)
+ * @method ValueEnum       getEnum()
+ * @method bool            hasArrayEnum()
+ * @method self            setArrayEnum(array $arrayEnum)
+ * @method list<ValueEnum> getArrayEnum()
  */
 class ExampleDTO extends DataTransferObject
 {
