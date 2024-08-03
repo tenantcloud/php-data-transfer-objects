@@ -12,7 +12,7 @@ Laravel data transfer objects.
 Require this package with composer.
 
 ```
-composer require tenantcloud/php-data-transfer-objects
+composer require tenantcloud/data-transfer-objects
 ```
 
 ## Examples
