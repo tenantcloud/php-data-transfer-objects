@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.4.0...v1.4.1) (2024-08-04)
+
+
+### Bug Fixes
+
+* Updated php fixer sets version ([#23](https://github.com/tenantcloud/php-data-transfer-objects/issues/23)) ([e1f6f0b](https://github.com/tenantcloud/php-data-transfer-objects/commit/e1f6f0b114813634b93c4b0293592306a055b683))
+
 # [1.4.0](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.3.0...v1.4.0) (2024-04-25)
 
 
