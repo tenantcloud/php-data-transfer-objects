@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.4.1...v1.5.0) (2025-01-27)
+
+
+### Features
+
+* Temporary static ([#24](https://github.com/tenantcloud/php-data-transfer-objects/issues/24)) ([e6f2cf9](https://github.com/tenantcloud/php-data-transfer-objects/commit/e6f2cf9c20b47cc38c7de865d30c2823e84f2f97))
+
 ## [1.4.1](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.4.0...v1.4.1) (2024-08-04)
 
 
