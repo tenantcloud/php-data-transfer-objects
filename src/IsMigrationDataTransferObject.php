@@ -14,6 +14,17 @@ trait IsMigrationDataTransferObject
 {
 	use ForwardsCalls;
 
+	/** @var list<mixed> */
+	private static array $missingValues = [];
+
+	/**
+	 * @param list<mixed> $values
+	 */
+	public static function treatAsMissing(array $values): void
+	{
+		self::$missingValues = $values;
+	}
+
 	/**
 	 * @deprecated
 	 */
@@ -127,7 +138,8 @@ trait IsMigrationDataTransferObject
 	{
 		$this->assertFieldExists($key);
 
-		return (new ReflectionProperty(static::class, $this->keyToProperty($key)))->isInitialized($this);
+		return (new ReflectionProperty(static::class, $this->keyToProperty($key)))->isInitialized($this) &&
+			!in_array($this->{$this->keyToProperty($key)}, self::$missingValues, true);
 	}
 
 	/**
