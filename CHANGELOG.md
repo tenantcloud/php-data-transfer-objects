@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.5.0...v1.6.0) (2025-02-20)
+
+
+### Features
+
+* Add missing value checks for migration dtos ([#25](https://github.com/tenantcloud/php-data-transfer-objects/issues/25)) ([ffb32c4](https://github.com/tenantcloud/php-data-transfer-objects/commit/ffb32c4f3c47f64bf1ae3cdde8eee8b431bb9bab))
+
 # [1.5.0](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.4.1...v1.5.0) (2025-01-27)
 
 
