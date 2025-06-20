@@ -111,6 +111,23 @@ class MigrationTest extends TestCase
 	public function testLegacyConstructionFromArray(): void
 	{
 		$dto = MigrationStubDTO::from([
+			'name' => 'test',
+			'dto'  => $stub = StubDTO::create()->setName('nested'),
+			'enum' => TestEnum::$ONE,
+		]);
+
+		self::assertSame([
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => null,
+		], $dto->all());
+
+		self::assertNull($dto->withDefault);
+		self::assertNull($dto->getWithDefault());
+		self::assertTrue($dto->hasWithDefault());
+
+		$dto = MigrationStubDTO::from([
 			'name'         => 'test',
 			'dto'          => $stub = StubDTO::create()->setName('nested'),
 			'enum'         => TestEnum::$ONE,
