@@ -10,6 +10,6 @@ class MigrationStubDTO extends MigrationDataTransferObject
 		public string $name,
 		public readonly StubDTO $dto,
 		public readonly TestEnum $enum,
-		public string|null $withDefault = null,
+		public ?string $withDefault = null,
 	) {}
 }
