@@ -14,21 +14,24 @@ class MigrationTest extends TestCase
 		$dto = new MigrationStubDTO('test', $stub = StubDTO::create()->setName('nested'), TestEnum::$ONE);
 
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => null,
 		], $dto->all());
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => null,
 		], $dto->jsonSerialize());
 		self::assertSame([
 			'name' => 'test',
 			'dto'  => [
 				'name' => 'nested',
 			],
-			'enum' => TestEnum::$ONE,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => null,
 		], $dto->toArray());
 		self::assertSame('test', $dto->name);
 		self::assertSame('test', $dto->getName());
@@ -59,27 +62,33 @@ class MigrationTest extends TestCase
 		self::assertFalse($dto->hasDto());
 		self::assertNull($dto->getEnum());
 		self::assertFalse($dto->hasEnum());
+		self::assertNull($dto->getWithDefault());
+		self::assertFalse($dto->hasWithDefault());
 
 		$dto->setName('test')
 			->setDto($stub = StubDTO::create()->setName('nested'))
-			->setEnum(TestEnum::$ONE);
+			->setEnum(TestEnum::$ONE)
+			->setWithDefault('string');
 
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->all());
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->jsonSerialize());
 		self::assertSame([
 			'name' => 'test',
 			'dto'  => [
 				'name' => 'nested',
 			],
-			'enum' => TestEnum::$ONE,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->toArray());
 		self::assertSame('test', $dto->name);
 		self::assertSame('test', $dto->getName());
@@ -90,6 +99,9 @@ class MigrationTest extends TestCase
 		self::assertTrue($dto->hasDto());
 		self::assertSame(TestEnum::$ONE, $dto->getEnum());
 		self::assertTrue($dto->hasEnum());
+		self::assertSame('string', $dto->withDefault);
+		self::assertSame('string', $dto->getWithDefault());
+		self::assertTrue($dto->hasWithDefault());
 
 		$this->expectExceptionMessage('Cannot modify readonly property Tests\\Stubs\\MigrationStubDTO::$enum');
 
@@ -99,27 +111,31 @@ class MigrationTest extends TestCase
 	public function testLegacyConstructionFromArray(): void
 	{
 		$dto = MigrationStubDTO::from([
-			'name' => 'test',
-			'dto'  => $stub = StubDTO::create()->setName('nested'),
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub = StubDTO::create()->setName('nested'),
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		]);
 
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->all());
 		self::assertSame([
-			'name' => 'test',
-			'dto'  => $stub,
-			'enum' => TestEnum::$ONE,
+			'name'         => 'test',
+			'dto'          => $stub,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->jsonSerialize());
 		self::assertSame([
 			'name' => 'test',
 			'dto'  => [
 				'name' => 'nested',
 			],
-			'enum' => TestEnum::$ONE,
+			'enum'         => TestEnum::$ONE,
+			'with_default' => 'string',
 		], $dto->toArray());
 		self::assertSame('test', $dto->name);
 		self::assertSame('test', $dto->getName());
@@ -130,6 +146,9 @@ class MigrationTest extends TestCase
 		self::assertTrue($dto->hasDto());
 		self::assertSame(TestEnum::$ONE, $dto->getEnum());
 		self::assertTrue($dto->hasEnum());
+		self::assertSame('string', $dto->withDefault);
+		self::assertSame('string', $dto->getWithDefault());
+		self::assertTrue($dto->hasWithDefault());
 
 		$this->expectExceptionMessage('Cannot modify readonly property Tests\\Stubs\\MigrationStubDTO::$enum');
 

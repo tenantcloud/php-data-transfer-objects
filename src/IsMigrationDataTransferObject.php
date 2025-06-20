@@ -56,7 +56,7 @@ trait IsMigrationDataTransferObject
 			}
 		}
 
-		return static::create()->fill($data);
+		return static::create()->fillOrDefaults($data);
 	}
 
 	/**
@@ -77,6 +77,32 @@ trait IsMigrationDataTransferObject
 		}
 
 		return $this;
+	}
+
+	/**
+	 * @return static
+	 *
+	 * @deprecated
+	 *
+	 * Fill with given data or set defaults
+	 */
+	public function fillOrDefaults(array $data)
+	{
+		foreach ((new ReflectionClass(static::class))->getProperties() as $property) {
+			if (!$property->hasDefaultValue()) {
+				continue;
+			}
+
+			$keyName = $this->propertyToKey($property->name);
+
+			if (isset($data[$keyName])) {
+				continue;
+			}
+
+			$property->setValue($property->getDefaultValue());
+		}
+
+		return $this->fill($data);
 	}
 
 	/**
