@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.6.1...v1.6.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* Broken filling of default values ([#27](https://github.com/tenantcloud/php-data-transfer-objects/issues/27)) ([bec1f6e](https://github.com/tenantcloud/php-data-transfer-objects/commit/bec1f6effa3fd38fa9c2569322304da34ce14a6d))
+
 ## [1.6.1](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.6.0...v1.6.1) (2025-06-20)
 
 
