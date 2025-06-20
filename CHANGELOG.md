@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.6.0...v1.6.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* Fill migration DTO default values in from() ([#26](https://github.com/tenantcloud/php-data-transfer-objects/issues/26)) ([a0f78b8](https://github.com/tenantcloud/php-data-transfer-objects/commit/a0f78b8dd1cc9f6bcebeaddb48aa3c1c55bdeee0))
+
 # [1.6.0](https://github.com/tenantcloud/php-data-transfer-objects/compare/v1.5.0...v1.6.0) (2025-02-20)
 
 
