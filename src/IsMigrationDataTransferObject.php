@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
 use ReflectionClass;
+use ReflectionParameter;
 use ReflectionProperty;
 use Webmozart\Assert\Assert;
 
@@ -88,8 +89,15 @@ trait IsMigrationDataTransferObject
 	 */
 	public function fillOrDefaults(array $data)
 	{
+		$constructorParams = (new ReflectionClass(static::class))->getConstructor()?->getParameters() ?? [];
+
 		foreach ((new ReflectionClass(static::class))->getProperties() as $property) {
-			if (!$property->hasDefaultValue()) {
+			/** @var ReflectionParameter|null $promoted */
+			$promoted = $property->isPromoted() ?
+				Arr::first($constructorParams, fn (ReflectionParameter $parameter) => $parameter->name === $property->name) :
+				null;
+
+			if (!$property->hasDefaultValue() && !$promoted?->isDefaultValueAvailable()) {
 				continue;
 			}
 
@@ -99,7 +107,9 @@ trait IsMigrationDataTransferObject
 				continue;
 			}
 
-			$property->setValue($property->getDefaultValue());
+			$defaultValue = $promoted ? $promoted->getDefaultValue() : $property->getDefaultValue();
+
+			$property->setValue($this, $defaultValue);
 		}
 
 		return $this->fill($data);
