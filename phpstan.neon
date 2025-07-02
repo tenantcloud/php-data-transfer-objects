@@ -12,4 +12,5 @@ parameters:
 		- src
 
 	ignoreErrors:
-		-'#Unsafe usage of new static\(\)\.#i'
+		- '#Unsafe usage of new static\(\)\.#i'
+		- '#Unsafe usage of new static\(\) in abstract class .* in static method create\(\).#'
