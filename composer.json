@@ -3,21 +3,21 @@
 	"description": "PHP data transfer objects",
 	"license": "MIT",
 	"require": {
-		"php": ">=8.2",
+		"php": ">=8.3",
 		"ext-json": "*",
 		"illuminate/support": "^9.0|^10.0|^11.0|^12.0",
 		"spatie/macroable": "^1.0|^2.0",
 		"tenantcloud/php-standard": "1.2 || ^1.4 || ^2.0"
 	},
 	"require-dev": {
-		"pestphp/pest": "^2.8|^3.8",
+		"pestphp/pest": "^3.8",
 		"orchestra/testbench": "^7.0|^8.5|^9.0|^10.0",
-		"php-cs-fixer/shim": "^3.54",
-		"tenantcloud/php-cs-fixer-rule-sets": "~3.3.1",
-		"phpstan/phpstan": "~1.10.21|^2.1.17",
-		"phpstan/phpstan-phpunit": "^1.3|^2.0",
-		"phpstan/phpstan-webmozart-assert": "^1.2|^2.0",
-		"phpstan/phpstan-mockery": "^1.1|^2.0"
+		"php-cs-fixer/shim": "^3.75",
+		"tenantcloud/php-cs-fixer-rule-sets": "~3.4.1",
+		"phpstan/phpstan": "^2.1.17",
+		"phpstan/phpstan-phpunit": "^2.0",
+		"phpstan/phpstan-webmozart-assert": "^2.0",
+		"phpstan/phpstan-mockery": "^2.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -32,7 +32,7 @@
 	"scripts": {
 		"test": "vendor/bin/pest",
 		"coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage-html coverage",
-		"cs-fix": "vendor/bin/php-cs-fixer fix -v --show-progress=dots",
+		"cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix -v --show-progress=dots",
 		"phpstan": "vendor/bin/phpstan analyse --memory-limit=2G"
 	},
 	"minimum-stability": "stable",

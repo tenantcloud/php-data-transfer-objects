@@ -17,7 +17,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [8.2, 8.3]
+                php: [8.4]
 
         runs-on: packages
         container: chialab/php:${{ matrix.php }}
@@ -27,6 +27,7 @@ jobs:
 
             - name: Composer cache
               uses: actions/cache@v4
+              if: ${{ !env.ACT }}
               with:
                   path: vendor
                   key: composer-${{ hashFiles('composer.json') }}
@@ -40,13 +41,14 @@ jobs:
     php-cs-fixer:
         name: php-cs-fixer
         runs-on: packages
-        container: chialab/php:8.3
+        container: chialab/php:8.4
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
 
             - name: Composer cache
               uses: actions/cache@v4
+              if: ${{ !env.ACT }}
               with:
                   path: vendor
                   key: composer-${{ hashFiles('composer.json') }}
@@ -76,7 +78,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [8.2, 8.3]
+                php: [8.4]
 
         runs-on: packages
         container: chialab/php:${{ matrix.php }}
@@ -86,6 +88,7 @@ jobs:
 
             - name: Composer cache
               uses: actions/cache@v4
+              if: ${{ !env.ACT }}
               with:
                   path: vendor
                   key: composer-${{ hashFiles('composer.json') }}
